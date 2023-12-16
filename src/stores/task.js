@@ -23,13 +23,12 @@ export const useTaskStore = defineStore('task', () => {
                 }
                 return t
             })
-        }else {
+        } else {
             tasks.value = [...tasks.value, task]
         }
 
         saveTasks()
     }
-
 
     return {tasks, getTasksByGroupId, saveTasks, updateOrAddTask}
 })

@@ -8,14 +8,13 @@ export function useTaskGroup(taskGroupsData) {
     const taskGroups = ref(taskGroupsData)
 
     const addTaskToGroup = () => {
-        taskGroups.value = taskGroups.value.map((item) => {
-            return {
-                ...item,
-                'tasks': tasksStore.getTasksByGroupId(item.id),
-                'searchStr': ''
-            }
-        })
+        taskGroups.value = taskGroups.value.map(item => ({
+            ...item,
+            tasks: tasksStore.getTasksByGroupId(item.id),
+            searchStr: ''
+        }));
     }
+
     addTaskToGroup()
     watch(tasks, addTaskToGroup)
 

@@ -17,12 +17,7 @@ export const useTaskStore = defineStore('task', () => {
     const updateOrAddTask = (task) => {
         const editedTask = tasks.value.find(t => t.id === task.id)
         if (editedTask) {
-            tasks.value = tasks.value.map((t) => {
-                if (t.id === task.id) {
-                    return task
-                }
-                return t
-            })
+            tasks.value = tasks.value.map((t) => t.id === task.id ? task : t)
         } else {
             tasks.value = [...tasks.value, task]
         }

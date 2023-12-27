@@ -1,6 +1,6 @@
-import {useTaskStore} from "@/stores/task.js";
+import {useTaskStore} from "@/stores/task.js"
 import {computed, nextTick, ref, watch} from "vue"
-import {storeToRefs} from "pinia";
+import {storeToRefs} from "pinia"
 
 export function useDragAndDrop(taskGroups) {
     const tasksStore = useTaskStore()
@@ -9,21 +9,19 @@ export function useDragAndDrop(taskGroups) {
     const delayedDragging = ref(false)
 
     const onMove = (context) => {
-        const relatedElement = context.relatedContext.element;
-        const draggedElement = context.draggedContext.element;
+        const relatedElement = context.relatedContext.element
+        const draggedElement = context.draggedContext.element
 
         return (
             (!relatedElement || !relatedElement.fixed) && !draggedElement.fixed
-        );
+        )
     }
     const onDragEnd = () => {
         isDragging.value = false
-        tasks.value = taskGroups.value.map((group) => {
-            return group.tasks.map((t) => {
-                t.groupId = group.id
-                return t
-            })
-        }).reduce((array, tasks) => [...array, ...tasks], []);
+        tasks.value = taskGroups.value.flatMap((group) =>
+            group.tasks.map((t) => ({ ...t, groupId: group.id }))
+        )
+
         tasksStore.saveTasks()
     }
     const dragOptions = computed(() => {
@@ -32,17 +30,17 @@ export function useDragAndDrop(taskGroups) {
             group: "description",
             disabled: false,
             ghostClass: "ghost"
-        };
+        }
     })
 
     watch(isDragging, (val) => {
             if (val) {
-                delayedDragging.value = true;
-                return;
+                delayedDragging.value = true
+                return
             }
             nextTick(() => {
-                delayedDragging.value = false;
-            });
+                delayedDragging.value = false
+            })
         }
     )
 

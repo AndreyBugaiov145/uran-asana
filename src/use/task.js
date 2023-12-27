@@ -1,6 +1,6 @@
-import {useTaskStore} from "@/stores/task.js";
+import {useTaskStore} from "@/stores/task.js"
 import {ref} from "vue"
-import {storeToRefs} from "pinia";
+import {storeToRefs} from "pinia"
 
 export function useTask(taskGroups) {
     const taskCard = ref(null)
@@ -30,9 +30,7 @@ export function useTask(taskGroups) {
     const orderList = (groupId) => {
         taskGroups.value = taskGroups.value.map((group) => {
             if (group.id === groupId) {
-                group.tasks = group.tasks.sort((one, two) => {
-                    return two.priority - one.priority;
-                });
+                group.tasks.sort((one, two) => two.priority - one.priority)
             }
 
             return group
@@ -40,18 +38,13 @@ export function useTask(taskGroups) {
     }
 
     const filterTaskBySearchStr = (groupId) => {
-        taskGroups.value = taskGroups.value.map((group) => {
-            if (group.id === groupId) {
-                group.tasks = tasks.value.filter(t => t.groupId === groupId)
-                if (group.searchStr.length > 0) {
-                    group.tasks = group.tasks.filter((task) => {
-                        return task.title.includes(group.searchStr);
-                    });
-                }
-            }
-
-            return group
-        })
+        taskGroups.value = taskGroups.value.map((group) => ({
+            ...group,
+            tasks: group.id === groupId
+                ? tasks.value.filter(t => t.groupId === groupId)
+                    .filter(task => group.searchStr.length > 0 ? task.title.includes(group.searchStr) : true)
+                : group.tasks
+        }))
     }
 
     const setEditMode = () => editMode.value = true

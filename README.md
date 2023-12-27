@@ -15,12 +15,13 @@ Sequence of tasks and time of their completion
 
 ## Recommended 
 
-Node v18.12.1
+Node v20.10.0
+
 
 ## Project Setup
 
 ```sh
-npm install
+npm ci
 ```
 
 ### Compile and Hot-Reload for Development

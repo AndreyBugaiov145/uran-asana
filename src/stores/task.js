@@ -2,7 +2,13 @@ import {ref} from 'vue'
 import {defineStore} from 'pinia'
 
 export const useTaskStore = defineStore('task', () => {
-    const tasks = ref(JSON.parse(localStorage.getItem("uran-asana-tasks") || '[]'))
+    let taskData;
+    try {
+        taskData = JSON.parse(localStorage.getItem("uran-asana-tasks")) || [];
+    } catch (error) {
+        taskData = [];
+    }
+    const tasks = ref(taskData)
 
     const getTasksByGroupId = (group_id) => {
         return tasks.value.filter((task) => {
@@ -11,7 +17,14 @@ export const useTaskStore = defineStore('task', () => {
     }
 
     const saveTasks = () => {
-        localStorage.setItem("uran-asana-tasks", JSON.stringify(tasks.value))
+        try {
+            const stringifyTask =  JSON.stringify(tasks.value)
+            localStorage.setItem("uran-asana-tasks",stringifyTask )
+        }catch (e) {
+            localStorage.setItem("uran-asana-tasks",'' )
+            console.error(e)
+        }
+
     }
 
     const updateOrAddTask = (task) => {

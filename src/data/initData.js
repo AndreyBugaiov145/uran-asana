@@ -1,3 +1,5 @@
+import {DoneGroup,InProgressGroup,QAGroup,BacklogGroup} from '../const/group.js'
+
 export const tasks =  [
         {id: 1, title: 'Task 1', priority: 2, groupId: 1,description:'1With supporting text below as a natural lead-in to additional content.'},
         {id: 2, title: 'Task 2', priority: 0, groupId: 2,description:'2With supporting text below as a natural lead-in to additional content.'},
@@ -10,8 +12,8 @@ export const tasks =  [
     ]
 
 export const taskGroupsData =  [
-    {id: 1, title: 'Backlog'},
-    {id: 2, title: 'In Progress'},
-    {id: 3, title: 'QA'},
-    {id: 4, title: 'Done'}
+    {id: 1, title: BacklogGroup},
+    {id: 2, title: InProgressGroup},
+    {id: 3, title: QAGroup},
+    {id: 4, title: DoneGroup}
 ]

@@ -5,7 +5,7 @@
         <div class="d-flex flex-row d-flex">
           <h3 class="p-2 bd-highlight mr-3 align-middle">{{ group.title }}</h3>
           <div class=" d-flex align-items-center">
-            <button v-if="group.title === 'Backlog'" @click="showTaskCard({id:Date.now(),groupId:group.id},group.title,true)" type="button" class="btn btn-secondary">add Task</button>
+            <button v-if="group.title === BacklogGroup" @click="showTaskCard({id:Date.now(),groupId:group.id},group.title,true)" type="button" class="btn btn-secondary">add Task</button>
           </div>
         </div>
         <div class="p-2 bd-highlight mr-3 d-flex align-items-center">
@@ -34,6 +34,7 @@
 </template>
 
 <script setup>
+import {BacklogGroup} from '../const/group.js'
 import {taskGroupsData} from '@/data/initData.js'
 import {VueDraggableNext} from 'vue-draggable-next'
 import TaskPreview from "@/components/TaskPreview.vue";

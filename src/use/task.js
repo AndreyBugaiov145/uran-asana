@@ -1,6 +1,7 @@
 import {useTaskStore} from "@/stores/task.js"
 import {ref} from "vue"
 import {storeToRefs} from "pinia"
+import {DoneGroup} from '../const/group.js'
 
 export function useTask(taskGroups) {
     const taskCard = ref(null)
@@ -25,7 +26,7 @@ export function useTask(taskGroups) {
         }
     }
 
-    const canEditTask = (groupName) => groupName !== 'Done'
+    const canEditTask = (groupName) => groupName !== DoneGroup
 
     const orderList = (groupId) => {
         taskGroups.value = taskGroups.value.map((group) => {

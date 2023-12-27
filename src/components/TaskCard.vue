@@ -36,12 +36,10 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {useTaskFields} from "@/use/taskFields.js";
 
 const {task, editMode, closeTaskCard, setEditMode, canEditTask} = defineProps(['task', 'editMode', 'closeTaskCard', 'setEditMode', 'canEditTask'])
-const title = ref(task.title || '')
-const description = ref(task.description || '')
-const priority = ref(task.priority || '')
+const {title, description, priority} = useTaskFields(task)
 
 const saveTask = () => {
   closeTaskCard({...task, title: title.value, description: description.value, priority: priority.value || 0}, true)

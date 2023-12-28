@@ -1,5 +1,5 @@
 <template>
-  <div class="container" >
+  <div class="container">
     <div v-if="isError" class="alert alert-danger" role="alert">
       An unexpected error occurred, contact the developers
     </div>
@@ -7,9 +7,8 @@
   </div>
 </template>
 <script setup>
-import TaskDashboard from "@/components/TaskDashboard.vue";
-import {useGlobalError} from "@/use/globalError.js";
+import TaskDashboard from '@/components/TaskDashboard.vue'
+import { useGlobalError } from '@/use/globalError.ts'
 
-const {isError} = useGlobalError();
-
+const { isError } = useGlobalError()
 </script>

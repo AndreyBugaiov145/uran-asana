@@ -16,5 +16,8 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-explicit-any": "off"
   },
-  plugins: ['@typescript-eslint']
+  plugins: ['@typescript-eslint'],
+  env: {
+    node: true
+  }
 }

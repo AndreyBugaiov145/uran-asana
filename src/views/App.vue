@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div v-if="isError" class="alert alert-danger" role="alert">
+  <div class="container mx-auto">
+    <div v-if="isError" class="mb-4 rounded bg-red-500 p-4 text-white underline">
       An unexpected error occurred, contact the developers
     </div>
     <TaskDashboard></TaskDashboard>

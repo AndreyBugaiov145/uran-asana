@@ -1,21 +1,21 @@
 <template>
-  <li class="list-group-item" @click.prevent="showTaskCard(task, groupName)">
-    <div class="d-flex justify-content-between">
+  <div
+    class="list-group-item cursor-grabbing border-b-2 p-2"
+    @click.prevent="showTaskCard(task, groupName)"
+  >
+    <div class="flex justify-between">
       <div>{{ task.title }}</div>
       <div>{{ truncateString(task.description) }}</div>
       <div>P{{ task.priority }}</div>
-      <button
-        v-if="canEditTask(groupName)"
-        @click.stop="showTaskCard(task, groupName, true)"
-        class="btn btn-primary"
-      >
+      <Button v-if="canEditTask(groupName)" @click.stop="showTaskCard(task, groupName, true)">
         edit
-      </button>
+      </Button>
     </div>
-  </li>
+  </div>
 </template>
 
 <script setup>
+import Button from '@/ui/Button.vue'
 const { task, showTaskCard, groupName, canEditTask } = defineProps([
   'task',
   'showTaskCard',
